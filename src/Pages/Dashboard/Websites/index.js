@@ -9,6 +9,7 @@ import { getAllWebsites } from "../../../Services/websiteServices";
 import WebsiteEditModal from "../../../Components/Website/Edit";
 import WebsiteCreateModal from "../../../Components/Website/Create";
 import { WEBSITE_CONFIG_PAGE_ROUTE } from "../../../Routes/config";
+import Moment from "react-moment";
 
 const WebsiteListPage = () => {
 
@@ -73,8 +74,16 @@ const WebsiteListPage = () => {
                                     <td>{website.name}</td>
                                     <td>{website.state}</td>
                                     <td><span className="badge bg-primary">{website.url}</span></td>
-                                    <td>{website.created_at}</td>
-                                    <td>{website.updated_at}</td>
+                                    <td>
+                                        <Moment format="LL">
+                                            {website.created_at}
+                                        </Moment>
+                                    </td>
+                                    <td>
+                                        <Moment format="LL">
+                                            {website.updated_at}
+                                        </Moment>
+                                    </td>
                                     <td>
                                         <div className="dropdown">
                                             <button

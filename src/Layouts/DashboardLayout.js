@@ -53,11 +53,11 @@ const DashboardLayout = () => {
                             >
                                 Recursos
                             </CustomLink>
-                            <CustomLink
+                            {/* <CustomLink
                                 to={KEYWORD_LIST_PAGE}
                             >
                                 Palabras claves
-                            </CustomLink>
+                            </CustomLink> */}
                         </ul>
                     </div>
                 </div>

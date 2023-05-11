@@ -14,7 +14,9 @@ import UserListPage from '../Pages/Dashboard/Users/List';
 import WebsiteListPage from '../Pages/Dashboard/Websites';
 import WebsiteConfigPage from '../Pages/Dashboard/Websites/config';
 import HomePage from '../Pages/HomePage';
-import { DASHBOARD_HOME_PAGE, HOME_PAGE, LOGIN_PAGE, RESOURCE_EDIT_PAGE_ROUTE, SEARCH_LIST_PAGE, USER_LIST_PAGE, WEBSITE_CONFIG_PAGE, WEBSITE_LIST_PAGE } from './config';
+import { DASHBOARD_HOME_PAGE, HOME_PAGE, LOGIN_PAGE, RESOURCE_EDIT_PAGE_ROUTE, RESOURCE_LIST_PAGE, SEARCH_LIST_PAGE, SEARCH_PAGE, USER_LIST_PAGE, WEBSITE_CONFIG_PAGE, WEBSITE_LIST_PAGE } from './config';
+import ResourceListPage from '../Pages/Dashboard/Resources/List';
+import SearchPage from '../Pages/SearchPage';
 
 const MyRoutes = () => {
     
@@ -42,6 +44,14 @@ const MyRoutes = () => {
                     <Route index element={<LoginPage />} />
                 </Route>
                 <Route
+                    path={SEARCH_PAGE}
+                    element={
+                        <PublicRouteMiddleware>
+                            <SearchPage/>
+                        </PublicRouteMiddleware>
+                    }
+                ></Route>
+                <Route
                     path={DASHBOARD_HOME_PAGE}
                     element={
                         <PrivateRouteMiddleware>
@@ -54,6 +64,7 @@ const MyRoutes = () => {
                     <Route path={SEARCH_LIST_PAGE} element={<SearchListPage />} />
                     <Route path={USER_LIST_PAGE} element={<UserListPage />} />
                     <Route path={WEBSITE_CONFIG_PAGE} element={<WebsiteConfigPage />} />
+                    <Route path={RESOURCE_LIST_PAGE} element={<ResourceListPage />} />
                 </Route>
             </Routes>
         </BrowserRouter>

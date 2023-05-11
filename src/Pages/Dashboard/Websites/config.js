@@ -8,6 +8,7 @@ import { getWebsiteConfiguration, testWebsiteConfiguration, updateWebsiteConfigu
 const WebsiteConfigPage = () => {
 
     const [websiteConfig, setWebsiteConfig] = useState({});
+    const [configState, setConfigState] = useState(0);
     const [resources, setResources] = useState([]);
 
     const [isLoading, setIsLoading] = useState(false);
@@ -28,6 +29,7 @@ const WebsiteConfigPage = () => {
         try{
             const response = await getWebsiteConfiguration(id);
             setWebsiteConfig(response.data.web_configuration);
+            setConfigState(response.data.web_configuration.state);
             setIsLoading(false);
         }catch(err){
             setIsLoading(false);
@@ -104,6 +106,28 @@ const WebsiteConfigPage = () => {
                             onSubmit={(e) => handleUpdateConfig(e)}
                         >
                             <Panel>
+                            <div className="row">
+                                    <div className="col">
+                                        <div className="form-check form-switch mb-3">
+                                            <label 
+                                                className="form-check-label" 
+                                                htmlFor="flexSwitchCheckDefault"
+                                            >
+                                                Estado
+                                            </label>
+                                            <input 
+                                                className="form-check-input" 
+                                                type="checkbox" 
+                                                role="switch" 
+                                                id="flexSwitchCheckDefault"
+                                                checked={configState}
+                                                defaultChecked={websiteConfig.state}
+                                                onChange={(e) => setConfigState(!configState)}
+                                            />
+                                            <input name="state" type="hidden" defaultValue={configState} />
+                                        </div>
+                                    </div>
+                                </div>
                                 <div className="row">
                                     <div className="col">
                                         <div className="form-floating mb-3">
@@ -142,8 +166,6 @@ const WebsiteConfigPage = () => {
                                         </div>
                                     </div>
                                 </div>
-                            </Panel>
-                            <Panel>
                                 <div className="row">
                                     <div className="col">
                                         <div className="form-floating mb-3">
@@ -204,8 +226,6 @@ const WebsiteConfigPage = () => {
                                         </div>
                                     </div>
                                 </div>
-                            </Panel>
-                            <Panel>
                                 <div className="row">
                                     <div className="col">
                                         <div className="form-floating mb-3">
@@ -244,16 +264,16 @@ const WebsiteConfigPage = () => {
                                         </div>
                                     </div>
                                 </div>
+                                <div className="my-3 d-grid gap-2">
+                                    <button 
+                                        className="btn btn-primary"
+                                        type="submit"
+                                        disabled={isUpdating}
+                                    >
+                                        {isUpdating ? 'Actualizando' : 'Actualizar'} configuración
+                                    </button>
+                                </div>
                             </Panel>
-                            <div className="my-3 d-grid gap-2">
-                                <button 
-                                    className="btn btn-primary"
-                                    type="submit"
-                                    disabled={isUpdating}
-                                >
-                                    {isUpdating ? 'Actualizando' : 'Actualizar'} configuración
-                                </button>
-                            </div>
                         </form>
                     </div>
                     <div className="col-md-6">

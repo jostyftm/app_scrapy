@@ -6,6 +6,7 @@ import { getAllWebsites } from '../../../Services/websiteServices';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import { faEllipsisH,} from "@fortawesome/free-solid-svg-icons"
 import SearchEditModal from '../../../Components/Search/Edit';
+import Moment from 'react-moment';
 
 const SearchListPage = () => {
 
@@ -91,8 +92,16 @@ const SearchListPage = () => {
                                     <td>{search.query}</td>
                                     {/* <td>{search.is_active}</td> */}
                                     <td><span className="badge bg-primary">{search.website?.url}</span></td>
-                                    <td>{search.created_at}</td>
-                                    <td>{search.updated_at}</td>
+                                    <td>
+                                        <Moment format="LL">
+                                            {search.created_at}
+                                        </Moment>
+                                    </td>
+                                    <td>
+                                        <Moment format="LL">
+                                            {search.updated_at}
+                                        </Moment>
+                                    </td>
                                     <td>
                                         <div className="dropdown">
                                             <button

@@ -6,6 +6,11 @@ import 'bootstrap/dist/js/bootstrap.min.js';
 
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+
+import 'moment';
+import 'moment/locale/es-mx';
+
+
 import { AuthContextProvider } from './Contexts/AuthContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

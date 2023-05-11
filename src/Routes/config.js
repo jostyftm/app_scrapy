@@ -1,6 +1,9 @@
 // Home route
 export const HOME_PAGE = "/";
 
+// Search Route
+export const SEARCH_PAGE = "/search";
+
 // Login route
 export const LOGIN_PAGE =   "/login";
 

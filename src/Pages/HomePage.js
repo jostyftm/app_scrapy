@@ -1,23 +1,30 @@
 import React from "react";
 
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {
-    faSearch
-} from '@fortawesome/free-solid-svg-icons'
+import { useNavigate } from "react-router-dom";
+import InputSearchComponent from "../Components/InputSearch";
+import { SEARCH_PAGE } from "../Routes/config";
 
 const HomePage = () => {
+
+    let navigate = useNavigate();
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        let inputValue = e.target.q.value;
+        let url = `${SEARCH_PAGE}?q=${inputValue.replace(/\s+/g, '+')}`;
+
+        navigate(url);
+    }
 
     return(
         <div className="container">
             <div className="row vh-100 align-items-center">
                 <div className="col-md-6 mx-auto">
                     <h1 className="text-center">¿Que quieres saber?</h1>
-                    <form className="mt-4">
-                        <div className="d-flex align-items-center border rounded-pill p-2 px-4">
-                            <input type={"text"} className="w-100 border-0 input-seacrh" />
-                            <FontAwesomeIcon icon={faSearch} className="mx-1" />
-                        </div>
-                    </form>
+                    <InputSearchComponent 
+                        onSubnmit={(e) => handleSubmit(e)}
+                    />
                 </div>
             </div>
         </div>
